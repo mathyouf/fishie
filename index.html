@@ -251,13 +251,20 @@ body {
     text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
 }
 
-.feature-grid {
+
+        .feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+}
+
+@media (max-width: 1200px) {
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .feature-card {
