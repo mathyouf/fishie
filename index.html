@@ -5,345 +5,342 @@
     <title>Fishie - A Figgie Variant</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐟</text></svg>">
     <style>
-        :root {
-            --primary: #00d4ff;
-            --surface-water: #0a4d68;
-            --shallow-water: #088395;
-            --mid-water: #05bfdb;
-            --deep-water: #00ffca;
-            --text: #ffffff;
-            --figgie-purple: #9400ff;
-            --figgie-purple-dark: #7000ff;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --glass-effect: rgba(255, 255, 255, 0.1);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
-        
-        body {
-            color: var(--text);
-            background: linear-gradient(
-                135deg,
-                var(--surface-water) 0%,
-                var(--shallow-water) 35%,
-                var(--mid-water) 65%,
-                var(--deep-water) 100%
-            );
-            min-height: 100vh;
-            background-attachment: fixed;
-            line-height: 1.6;
-        }
+:root {
+    --primary: #00d4ff;
+    --surface-water: #0a4d68;
+    --shallow-water: #088395;
+    --mid-water: #05bfdb;
+    --deep-water: #00ffca;
+    --text: #ffffff;
+    --figgie-purple: #9400ff;
+    --figgie-purple-dark: #7000ff;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --glass-effect: rgba(255, 255, 255, 0.1);
+}
 
-        .header-container {
-            padding: 3rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            min-height: 50vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
 
-        .emoji-banner {
-            font-size: 5rem;
-            margin: 2rem 0;
-            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3));
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-        @keyframes fadeInBubbles {
-            0% {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+body {
+    color: var(--text);
+    background: linear-gradient(
+        135deg,
+        var(--surface-water) 0%,
+        var(--shallow-water) 35%,
+        var(--mid-water) 65%,
+        var(--deep-water) 100%
+    );
+    min-height: 100vh;
+    background-attachment: fixed;
+    line-height: 1.6;
+}
 
-        .emoji-item {
-            display: inline-block;
-            opacity: 0;
-            animation: bubbleUp 1.5s ease-out forwards;
-        }
+.header-container {
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-        .emoji-item:nth-child(1) { animation-delay: 0.2s; }
-        .emoji-item:nth-child(2) { animation-delay: 0.8s; }
-        .emoji-item:nth-child(3) { animation-delay: 0.4s; }
-        .emoji-item:nth-child(4) { animation-delay: 1s; }
-        .emoji-item:nth-child(5) { animation-delay: 0.6s; }
+.emoji-banner {
+    font-size: 5rem;
+    margin: 2rem 0;
+    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3));
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
 
-        @keyframes bubble {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(8deg);
-            }
-            75% {
-                transform: translateY(-10px) rotate(-5deg);
-            }
-        }
+.emoji-item {
+    display: inline-block;
+    opacity: 0;
+    animation: bubbleUp 1.5s ease-out forwards;
+}
 
+/* Adjusted delays to start after FISHIE passes (around 2s into animation) */
+.emoji-item:nth-child(1) { animation-delay: 2.2s; }
+.emoji-item:nth-child(2) { animation-delay: 2.4s; }
+.emoji-item:nth-child(3) { animation-delay: 2.6s; }
+.emoji-item:nth-child(4) { animation-delay: 2.8s; }
+.emoji-item:nth-child(5) { animation-delay: 3.0s; }
 
-        .flip-text {
-            font-size: 12rem;
-            font-weight: 900;
-            margin: 1rem 0;
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            transform: translateX(-200%);
-            animation: swimIn 3s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
-            animation-delay: 0.5s;
-        }
+@keyframes bubbleUp {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) scale(0.3);
+    }
+    20% {
+        opacity: 0.3;
+        transform: translateY(80px) scale(0.4) rotate(5deg);
+    }
+    40% {
+        opacity: 0.6;
+        transform: translateY(60px) scale(0.6) rotate(-5deg);
+    }
+    60% {
+        opacity: 0.8;
+        transform: translateY(40px) scale(0.8) rotate(3deg);
+    }
+    80% {
+        opacity: 0.9;
+        transform: translateY(20px) scale(0.9) rotate(-2deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0);
+    }
+}
 
-        @keyframes swimIn {
-            0% {
-                transform: translateX(-200%) rotate(-15deg) translateY(50px);
-            }
-            25% {
-                transform: translateX(-100%) rotate(10deg) translateY(-30px);
-            }
-            50% {
-                transform: translateX(-50%) rotate(-5deg) translateY(20px);
-            }
-            75% {
-                transform: translateX(-25%) rotate(3deg) translateY(-10px);
-            }
-            90% {
-                transform: translateX(-5%) rotate(-2deg) translateY(5px);
-            }
-            100% {
-                transform: translateX(0) rotate(0) translateY(0);
-            }
-        }
-        .flip-letter {
-            display: inline-block;
-            color: var(--deep-water);
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
-            animation: fishSwim 6s ease-in-out infinite;
-            filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4));
-        }
-        @keyframes fishSwim {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            25% {
-                transform: translateY(-15px) rotate(5deg);
-            }
-            50% {
-                transform: translateY(0) rotate(0deg);
-            }
-            75% {
-                transform: translateY(15px) rotate(-5deg);
-            }
-            100% {
-                transform: translateY(0) rotate(0deg);
-            }
-        }
+.flip-text {
+    font-size: 12rem;
+    font-weight: 900;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    transform: translateX(-200%);
+    animation: swimIn 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
 
+@keyframes swimIn {
+    0% {
+        transform: translateX(-200%) rotate(-15deg) translateY(50px);
+    }
+    20% {
+        transform: translateX(-160%) rotate(10deg) translateY(-30px);
+    }
+    40% {
+        transform: translateX(-120%) rotate(-8deg) translateY(20px);
+    }
+    60% {
+        transform: translateX(-80%) rotate(6deg) translateY(-15px);
+    }
+    80% {
+        transform: translateX(-40%) rotate(-4deg) translateY(10px);
+    }
+    90% {
+        transform: translateX(-20%) rotate(2deg) translateY(-5px);
+    }
+    95% {
+        transform: translateX(-10%) rotate(-1deg) translateY(2px);
+    }
+    100% {
+        transform: translateX(0) rotate(0) translateY(0);
+    }
+}
 
-        @keyframes swim {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            25% {
-                transform: translateY(-15px) rotate(3deg);
-            }
-            75% {
-                transform: translateY(10px) rotate(-2deg);
-            }
-        }
+.flip-letter {
+    display: inline-block;
+    color: var(--deep-water);
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+    animation: fishSwim 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4));
+}
 
-                @keyframes bubbleUp {
-            0% {
-                opacity: 0;
-                transform: translateY(100px) scale(0.3);
-            }
-            50% {
-                opacity: 0.5;
-                transform: translateY(50px) scale(0.6) rotate(8deg);
-            }
-            75% {
-                opacity: 0.8;
-                transform: translateY(25px) scale(0.8) rotate(-8deg);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1) rotate(0);
-            }
-        }
+@keyframes fishSwim {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    10% {
+        transform: translateY(-5px) rotate(2deg);
+    }
+    20% {
+        transform: translateY(-10px) rotate(4deg);
+    }
+    30% {
+        transform: translateY(-13px) rotate(5deg);
+    }
+    40% {
+        transform: translateY(-15px) rotate(4deg);
+    }
+    50% {
+        transform: translateY(-13px) rotate(0deg);
+    }
+    60% {
+        transform: translateY(-10px) rotate(-2deg);
+    }
+    70% {
+        transform: translateY(-5px) rotate(-4deg);
+    }
+    80% {
+        transform: translateY(0) rotate(-5deg);
+    }
+    90% {
+        transform: translateY(5px) rotate(-2deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
 
+.flip-letter:nth-child(1) { animation-delay: 0.1s; }
+.flip-letter:nth-child(2) { animation-delay: 0.2s; }
+.flip-letter:nth-child(3) { animation-delay: 0.3s; }
+.flip-letter:nth-child(4) { animation-delay: 0.4s; }
+.flip-letter:nth-child(5) { animation-delay: 0.5s; }
+.flip-letter:nth-child(6) { animation-delay: 0.6s; }
 
-        .flip-letter:nth-child(1) { animation-delay: 0.1s; }
-        .flip-letter:nth-child(2) { animation-delay: 0.2s; }
-        .flip-letter:nth-child(3) { animation-delay: 0.3s; }
-        .flip-letter:nth-child(4) { animation-delay: 0.4s; }
-        .flip-letter:nth-child(5) { animation-delay: 0.5s; }
-        .flip-letter:nth-child(6) { animation-delay: 0.6s; }
+.hero {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
 
-        .hero {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-        }
-        
-        .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            background: linear-gradient(to right, var(--deep-water), var(--primary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 800;
-        }
-        
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 2.5rem;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+.hero h1 {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    background: linear-gradient(to right, var(--deep-water), var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
+}
 
-        .button {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            border-radius: 1rem;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
+.hero p {
+    font-size: 1.4rem;
+    margin-bottom: 2.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .figgie-button {
-            background: linear-gradient(135deg, var(--figgie-purple) 0%, var(--figgie-purple-dark) 100%);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(116, 55, 137, 0.3);
-        }
-        
-        .figgie-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 12px 40px rgba(116, 55, 137, 0.5);
-            border-color: rgba(255, 255, 255, 0.4);
-        }
-        
-        .features {
-            padding: 6rem 2rem;
-            position: relative;
-        }
-        
-        .features h2 {
-            text-align: center;
-            margin-bottom: 4rem;
-            font-size: 3rem;
-            color: var(--text);
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
-        .feature-card {
-            background: var(--card-bg);
-            padding: 3rem;
-            border-radius: 1.5rem;
-            border: 1px solid var(--glass-effect);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
+.button {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .feature-card h3 {
-            color: var(--deep-water);
-            margin-bottom: 2rem;
-            font-size: 2rem;
-            letter-spacing: 0.5px;
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-        }
-        
-        .rule-item {
-            margin-bottom: 1.5rem;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.7;
-            position: relative;
-        }
-        
-        .rule-title {
-            font-weight: bold;
-            color: var(--text);
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-        
-        .important-note {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 3rem;
-            background: var(--card-bg);
-            border-radius: 1.5rem;
-            border: 1px solid var(--glass-effect);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
+.figgie-button {
+    background: linear-gradient(135deg, var(--figgie-purple) 0%, var(--figgie-purple-dark) 100%);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(116, 55, 137, 0.3);
+}
 
-        .important-note h3 {
-            color: var(--deep-water);
-            margin-bottom: 2rem;
-            font-size: 2rem;
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-        }
-        
-        @media (max-width: 768px) {
-            .flip-text {
-                font-size: 6rem;
-            }
-            .emoji-banner {
-                font-size: 4rem;
-            }
-            .hero h1 {
-                font-size: 3rem;
-            }
-            .hero p {
-                font-size: 1.2rem;
-            }
-            .feature-card {
-                padding: 2rem;
-            }
-        }
+.figgie-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 40px rgba(116, 55, 137, 0.5);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.features {
+    padding: 6rem 2rem;
+    position: relative;
+}
+
+.features h2 {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 3rem;
+    color: var(--text);
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 1.5rem;
+    border: 1px solid var(--glass-effect);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.feature-card h3 {
+    color: var(--deep-water);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.rule-item {
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    position: relative;
+}
+
+.rule-title {
+    font-weight: bold;
+    color: var(--text);
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.important-note {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 3rem;
+    background: var(--card-bg);
+    border-radius: 1.5rem;
+    border: 1px solid var(--glass-effect);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.important-note h3 {
+    color: var(--deep-water);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+    .flip-text {
+        font-size: 6rem;
+    }
+    .emoji-banner {
+        font-size: 4rem;
+    }
+    .hero h1 {
+        font-size: 3rem;
+    }
+    .hero p {
+        font-size: 1.2rem;
+    }
+    .feature-card {
+        padding: 2rem;
+    }
+}
     </style>
 </head>
 <body>
