@@ -67,7 +67,6 @@ body {
     animation: bubbleUp 1.5s ease-out forwards;
 }
 
-/* Adjusted delays to start after FISHIE passes (around 2s into animation) */
 .emoji-item:nth-child(1) { animation-delay: 2.2s; }
 .emoji-item:nth-child(2) { animation-delay: 2.4s; }
 .emoji-item:nth-child(3) { animation-delay: 2.6s; }
@@ -109,33 +108,46 @@ body {
     justify-content: center;
     gap: 0.5rem;
     transform: translateX(-200%);
-    animation: swimIn 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: swimIn 3s cubic-bezier(0.37, 0, 0.63, 1) forwards;
+    transform-origin: center;
 }
 
 @keyframes swimIn {
     0% {
-        transform: translateX(-200%) rotate(-15deg) translateY(50px);
+        transform: translateX(-200%) scaleX(1.1) rotate(-2deg) translateY(0);
+    }
+    10% {
+        transform: translateX(-180%) scaleX(0.9) rotate(2deg) translateY(-10px);
     }
     20% {
-        transform: translateX(-160%) rotate(10deg) translateY(-30px);
+        transform: translateX(-160%) scaleX(1.1) rotate(-2deg) translateY(10px);
+    }
+    30% {
+        transform: translateX(-140%) scaleX(0.9) rotate(2deg) translateY(-10px);
     }
     40% {
-        transform: translateX(-120%) rotate(-8deg) translateY(20px);
+        transform: translateX(-120%) scaleX(1.1) rotate(-2deg) translateY(10px);
+    }
+    50% {
+        transform: translateX(-100%) scaleX(0.9) rotate(2deg) translateY(-10px);
     }
     60% {
-        transform: translateX(-80%) rotate(6deg) translateY(-15px);
+        transform: translateX(-80%) scaleX(1.1) rotate(-2deg) translateY(10px);
+    }
+    70% {
+        transform: translateX(-60%) scaleX(0.9) rotate(2deg) translateY(-10px);
     }
     80% {
-        transform: translateX(-40%) rotate(-4deg) translateY(10px);
+        transform: translateX(-40%) scaleX(1.1) rotate(-2deg) translateY(10px);
     }
     90% {
-        transform: translateX(-20%) rotate(2deg) translateY(-5px);
+        transform: translateX(-20%) scaleX(0.9) rotate(1deg) translateY(-5px);
     }
     95% {
-        transform: translateX(-10%) rotate(-1deg) translateY(2px);
+        transform: translateX(-10%) scaleX(1) rotate(0deg) translateY(2px);
     }
     100% {
-        transform: translateX(0) rotate(0) translateY(0);
+        transform: translateX(0) scaleX(1) rotate(0) translateY(0);
     }
 }
 
@@ -143,52 +155,34 @@ body {
     display: inline-block;
     color: var(--deep-water);
     text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
-    animation: fishSwim 4s ease-in-out infinite;
+    animation: fishSwim 3s ease-in-out infinite;
     filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4));
 }
 
 @keyframes fishSwim {
     0% {
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(0) scaleX(1);
     }
-    10% {
-        transform: translateY(-5px) rotate(2deg);
-    }
-    20% {
-        transform: translateY(-10px) rotate(4deg);
-    }
-    30% {
-        transform: translateY(-13px) rotate(5deg);
-    }
-    40% {
-        transform: translateY(-15px) rotate(4deg);
+    25% {
+        transform: translateY(-8px) scaleX(0.95);
     }
     50% {
-        transform: translateY(-13px) rotate(0deg);
+        transform: translateY(0) scaleX(1);
     }
-    60% {
-        transform: translateY(-10px) rotate(-2deg);
-    }
-    70% {
-        transform: translateY(-5px) rotate(-4deg);
-    }
-    80% {
-        transform: translateY(0) rotate(-5deg);
-    }
-    90% {
-        transform: translateY(5px) rotate(-2deg);
+    75% {
+        transform: translateY(8px) scaleX(0.95);
     }
     100% {
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(0) scaleX(1);
     }
 }
 
-.flip-letter:nth-child(1) { animation-delay: 0.1s; }
-.flip-letter:nth-child(2) { animation-delay: 0.2s; }
-.flip-letter:nth-child(3) { animation-delay: 0.3s; }
-.flip-letter:nth-child(4) { animation-delay: 0.4s; }
-.flip-letter:nth-child(5) { animation-delay: 0.5s; }
-.flip-letter:nth-child(6) { animation-delay: 0.6s; }
+.flip-letter:nth-child(1) { animation-delay: 0s; }
+.flip-letter:nth-child(2) { animation-delay: 0.1s; }
+.flip-letter:nth-child(3) { animation-delay: 0.2s; }
+.flip-letter:nth-child(4) { animation-delay: 0.3s; }
+.flip-letter:nth-child(5) { animation-delay: 0.4s; }
+.flip-letter:nth-child(6) { animation-delay: 0.5s; }
 
 .hero {
     padding: 4rem 2rem;
@@ -307,8 +301,8 @@ body {
 }
 
 .important-note {
-    max-width: 1200px;
-    margin: 4rem auto;
+    max-width: 700px;
+    margin: 2rem auto;
     padding: 3rem;
     background: var(--card-bg);
     border-radius: 1.5rem;
@@ -318,6 +312,7 @@ body {
 }
 
 .important-note h3 {
+    text-align: center;
     color: var(--deep-water);
     margin-bottom: 2rem;
     font-size: 2rem;
