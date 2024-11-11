@@ -5,164 +5,170 @@
     <title>Fishie - A Trading Card Game Variant</title>
     <style>
         :root {
-            --primary: #00b8d4;
-            --surface-water: #006994;
-            --shallow-water: #005477;
-            --mid-water: #004258;
-            --deep-water: #001b24;
+            --primary: #00d4ff;
+            --surface-water: #0a4d68;
+            --shallow-water: #088395;
+            --mid-water: #05bfdb;
+            --deep-water: #00ffca;
             --text: #ffffff;
-            --figgie-purple: #743789;
-            --figgie-purple-dark: #443888;
-            --card-bg: rgba(255, 255, 255, 0.03);
+            --figgie-purple: #9400ff;
+            --figgie-purple-dark: #7000ff;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --glass-effect: rgba(255, 255, 255, 0.1);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
         
-body {
-    color: var(--text);
-    background: linear-gradient(
-        180deg,
-        var(--surface-water) 0%,
-        var(--shallow-water) 25%,
-        var(--mid-water) 50%,
-        var(--deep-water) 100%
-    );
-    min-height: 100vh;
-    background-attachment: fixed;  /* This keeps the gradient fixed while scrolling */
-}
+        body {
+            color: var(--text);
+            background: linear-gradient(
+                135deg,
+                var(--surface-water) 0%,
+                var(--shallow-water) 35%,
+                var(--mid-water) 65%,
+                var(--deep-water) 100%
+            );
+            min-height: 100vh;
+            background-attachment: fixed;
+            line-height: 1.6;
+        }
 
         .header-container {
-            padding: 4rem 2rem;
+            padding: 3rem 2rem;
             text-align: center;
+            position: relative;
             overflow: hidden;
-            position: relative;
         }
 
-        .flip-text {
-            font-size: 12rem;
-            font-weight: 900;
-            position: relative;
+.emoji-banner {
+    font-size: 5rem;  /* Increased from 4rem */
+    margin: 2rem 0;
+    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3));
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+
+        .emoji-item {
+            animation: float 3s ease-in-out infinite;
+            transform-origin: center;
             display: inline-block;
-            margin: 2rem 0;
-            transform-style: preserve-3d;
-            animation: swimIn 2s ease-out forwards;
         }
 
-        @keyframes swimIn {
-            0% {
-                transform: translateX(-100%) rotateY(45deg) translateY(50px);
-                opacity: 0;
-            }
-            50% {
-                transform: translateX(-50%) rotateY(20deg) translateY(25px);
-                opacity: 0.5;
-            }
-            100% {
-                transform: translateX(0) rotateY(0) translateY(0);
-                opacity: 1;
-            }
+        .emoji-item:nth-child(2n) {
+            animation-delay: 0.5s;
         }
+
+        .emoji-item:nth-child(3n) {
+            animation-delay: 1s;
+        }
+
+.flip-text {
+    font-size: 12rem;  /* Increased from 8rem */
+    font-weight: 900;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+
 
         .flip-letter {
             display: inline-block;
-            color: var(--primary);
-            text-shadow: 0 0 30px rgba(0, 184, 212, 0.5);
-            animation: letterWave 3s ease-in-out infinite;
+            color: var(--deep-water);
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+            animation: letterPop 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4));
         }
 
-        @keyframes letterWave {
+        @keyframes letterPop {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
         }
 
-        .flip-letter:nth-child(1) { animation-delay: 0.0s; }
-        .flip-letter:nth-child(2) { animation-delay: 0.1s; }
-        .flip-letter:nth-child(3) { animation-delay: 0.2s; }
-        .flip-letter:nth-child(4) { animation-delay: 0.3s; }
-        .flip-letter:nth-child(5) { animation-delay: 0.4s; }
-        .flip-letter:nth-child(6) { animation-delay: 0.5s; }
-        
         .hero {
-            padding: 6rem 2rem;
-            display: flex;
-            align-items: center;
-            max-width: 1400px;
+            padding: 4rem 2rem;
+            max-width: 1200px;
             margin: 0 auto;
+            text-align: center;
             position: relative;
         }
         
-        .hero-content {
-            flex: 1;
-            padding-right: 2rem;
-        }
-        
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             margin-bottom: 1.5rem;
             line-height: 1.1;
-            color: var(--text);
+            background: linear-gradient(to right, var(--deep-water), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             font-weight: 800;
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin-bottom: 2.5rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
         .button {
             display: inline-block;
-            padding: 1rem 2.5rem;
-            border-radius: 0.75rem;
+            padding: 1.2rem 3rem;
+            border-radius: 1rem;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            overflow: hidden;
         }
 
         .figgie-button {
-            background: linear-gradient(180deg, var(--figgie-purple) 0%, var(--figgie-purple-dark) 100%);
+            background: linear-gradient(135deg, var(--figgie-purple) 0%, var(--figgie-purple-dark) 100%);
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 20px rgba(116, 55, 137, 0.3);
+            box-shadow: 0 8px 32px rgba(116, 55, 137, 0.3);
         }
         
         .figgie-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(116, 55, 137, 0.5);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(116, 55, 137, 0.5);
             border-color: rgba(255, 255, 255, 0.4);
         }
         
-.features {
-    padding: 6rem 2rem;
-    position: relative;
-    /* Remove the background: rgba(0, 0, 0, 0.1); */
-}
+        .features {
+            padding: 6rem 2rem;
+            position: relative;
+        }
         
         .features h2 {
             text-align: center;
             margin-bottom: 4rem;
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--text);
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
         }
         
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2.5rem;
             max-width: 1200px;
             margin: 0 auto;
@@ -170,93 +176,102 @@ body {
         }
         
         .feature-card {
-    background: rgba(255, 255, 255, 0.03);
-            padding: 2.5rem;
+            background: var(--card-bg);
+            padding: 3rem;
             border-radius: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
+            border: 1px solid var(--glass-effect);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
         }
         
         .feature-card h3 {
-            color: var(--primary);
+            color: var(--deep-water);
             margin-bottom: 2rem;
-            font-size: 1.75rem;
+            font-size: 2rem;
             letter-spacing: 0.5px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
         }
         
         .rule-item {
             margin-bottom: 1.5rem;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
             position: relative;
-            padding-left: 1.5rem;
+            padding-left: 1.8rem;
         }
 
         .rule-item::before {
-            content: '•';
+            content: '🎯';
             position: absolute;
             left: 0;
-            color: var(--primary);
-            opacity: 0.8;
+            font-size: 1rem;
         }
         
         .rule-title {
             font-weight: bold;
             color: var(--text);
             display: block;
-            margin-bottom: 0.3rem;
-            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
         }
         
         .important-note {
             max-width: 1200px;
             margin: 4rem auto;
-            padding: 2.5rem;
-    background: rgba(255, 255, 255, 0.03);
+            padding: 3rem;
+            background: var(--card-bg);
             border-radius: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-effect);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(1deg); }
-            50% { transform: translateY(-10px) rotate(-1deg); }
-            100% { transform: translateY(0px) rotate(1deg); }
+        .important-note h3 {
+            color: var(--deep-water);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
         }
-        
-        .hero img {
-            width: 100%;
-            max-width: 500px;
-            animation: float 6s ease-in-out infinite;
-        }
+
         
         @media (max-width: 768px) {
-            .flip-text {
-                font-size: 5rem;
+
+            .hero h1 {
+                font-size: 3rem;
             }
-            .hero {
-                flex-direction: column;
-                text-align: center;
+            .hero p {
+                font-size: 1.2rem;
             }
-            .hero-content {
-                padding-right: 0;
-                margin-bottom: 2rem;
-            }
-            .hero img {
-                max-width: 80%;
+    .flip-text {
+        font-size: 6rem;  /* Increased from 4rem */
+    }
+    .emoji-banner {
+        font-size: 4rem;  /* Increased from 3rem */
+    }
+            .feature-card {
+                padding: 2rem;
             }
         }
+        
     </style>
 </head>
 <body>
     <div class="header-container">
+        <div class="emoji-banner">
+            <span class="emoji-item">🐋</span>
+            <span class="emoji-item">💰</span>
+            <span class="emoji-item">🐠</span>
+            <span class="emoji-item">💎</span>
+            <span class="emoji-item">🎲</span>
+        </div>
         <div class="flip-text">
             <span class="flip-letter">F</span>
             <span class="flip-letter">I</span>
@@ -269,14 +284,9 @@ body {
     
     <main>
         <section class="hero">
-            <div class="hero-content">
-                <h1>Trade Smarter.<br>Play Fishier.</h1>
-                <p>A variant of Jane Street's Figgie card game that adds deception and negotiation mechanics. Built on Figgie's core trading mechanics but with a twist - make deals, break deals, and try to coin flip your way to infinity.</p>
-                <a href="https://www.figgie.com/index.html" target="_blank" class="button figgie-button">Learn Figgie Rules</a>
-            </div>
-            <div class="hero-image">
-                <img src="whale.png" alt="Game illustration" />
-            </div>
+            <h1>Trade Smarter.<br>Play Fishier.</h1>
+            <p>Dive into a variant of Jane Street's Figgie card game that adds deception and negotiation mechanics. Master the art of deal-making, strategic trading, and calculated risks in this enhanced version of the classic trading game.</p>
+            <a href="https://www.figgie.com/index.html" target="_blank" class="button figgie-button">Explore Figgie Rules</a>
         </section>
         
         <section class="features">
@@ -331,7 +341,7 @@ body {
         </section>
         
         <div class="important-note">
-            <h3 style="color: var(--primary); margin-bottom: 1rem;">Universal Restrictions</h3>
+            <h3>Universal Restrictions</h3>
             <div class="rule-item">
                 <span class="rule-title">No Cheating</span>
                 Unless unanimously agreed in Extremely Fishie
