@@ -6,9 +6,10 @@
     <style>
         :root {
             --primary: #00b8d4;
-            --primary-dark: #0089a1;
-            --secondary: #0a0b0f;
-            --accent: #151721;
+            --surface-water: #006994;
+            --shallow-water: #005477;
+            --mid-water: #004258;
+            --deep-water: #001b24;
             --text: #ffffff;
             --figgie-purple: #743789;
             --figgie-purple-dark: #443888;
@@ -23,21 +24,26 @@
         }
         
         body {
-            background-color: var(--secondary);
             color: var(--text);
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            background: linear-gradient(
+                180deg,
+                var(--surface-water) 0%,
+                var(--shallow-water) 30%,
+                var(--mid-water) 60%,
+                var(--deep-water) 100%
+            );
             min-height: 100vh;
         }
 
         .header-container {
-            background-color: var(--secondary);
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
             overflow: hidden;
+            position: relative;
         }
 
         .flip-text {
-            font-size: 8rem;
+            font-size: 12rem;
             font-weight: 900;
             position: relative;
             display: inline-block;
@@ -64,13 +70,13 @@
         .flip-letter {
             display: inline-block;
             color: var(--primary);
-            text-shadow: 0 0 20px rgba(0, 184, 212, 0.3);
+            text-shadow: 0 0 30px rgba(0, 184, 212, 0.5);
             animation: letterWave 3s ease-in-out infinite;
         }
 
         @keyframes letterWave {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
         }
 
         .flip-letter:nth-child(1) { animation-delay: 0.0s; }
@@ -84,31 +90,36 @@
             padding: 6rem 2rem;
             display: flex;
             align-items: center;
-            gap: 4rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
         }
         
         .hero-content {
             flex: 1;
+            padding-right: 2rem;
         }
         
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
             line-height: 1.1;
-            background: linear-gradient(135deg, #fff 0%, #a0aec0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text);
             font-weight: 800;
         }
         
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2.5rem;
-            color: #a0aec0;
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         .button {
@@ -137,17 +148,15 @@
         
         .features {
             padding: 6rem 2rem;
-            background-color: var(--accent);
             position: relative;
+            background: rgba(0, 0, 0, 0.1);
         }
         
         .features h2 {
             text-align: center;
             margin-bottom: 4rem;
             font-size: 2.5rem;
-            background: linear-gradient(135deg, #fff 0%, #a0aec0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text);
         }
         
         .feature-grid {
@@ -160,28 +169,18 @@
         }
         
         .feature-card {
-            background: var(--card-bg);
+            background: rgba(255, 255, 255, 0.05);
             padding: 2.5rem;
             border-radius: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: transform 0.3s ease;
             position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), transparent);
-            opacity: 0.5;
+            backdrop-filter: blur(10px);
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
         }
         
         .feature-card h3 {
@@ -193,7 +192,7 @@
         
         .rule-item {
             margin-bottom: 1.5rem;
-            color: #a0aec0;
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
             position: relative;
             padding-left: 1.5rem;
@@ -219,32 +218,40 @@
             max-width: 1200px;
             margin: 4rem auto;
             padding: 2.5rem;
-            background: var(--card-bg);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+            0% { transform: translateY(0px) rotate(1deg); }
+            50% { transform: translateY(-10px) rotate(-1deg); }
+            100% { transform: translateY(0px) rotate(1deg); }
         }
         
         .hero img {
+            width: 100%;
+            max-width: 500px;
             border-radius: 1.5rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            max-width: 40%;
-            height: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             animation: float 6s ease-in-out infinite;
         }
         
         @media (max-width: 768px) {
             .flip-text {
-                font-size: 4rem;
+                font-size: 5rem;
+            }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 2rem;
             }
             .hero img {
-                max-width: 40%;
+                max-width: 80%;
             }
         }
     </style>
@@ -268,7 +275,9 @@
                 <p>A variant of Jane Street's Figgie card game that adds deception and negotiation mechanics. Built on Figgie's core trading mechanics but with a twist - make deals, break deals, and try to coin flip your way to infinity.</p>
                 <a href="https://www.figgie.com/index.html" target="_blank" class="button figgie-button">Learn Figgie Rules</a>
             </div>
-            <img src="/api/placeholder/500/400" alt="Game illustration" />
+            <div class="hero-image">
+                <img src="/api/placeholder/500/400" alt="Game illustration" />
+            </div>
         </section>
         
         <section class="features">
