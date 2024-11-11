@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Fishie - A Trading Card Game Variant</title>
     <style>
-        /* Previous styles remain exactly the same */
         :root {
             --primary: #00b8d4;
             --primary-dark: #0089a1;
@@ -29,24 +28,57 @@
             background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
             min-height: 100vh;
         }
-        
-        nav {
+
+        .header-container {
             background-color: var(--secondary);
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem 2rem;
+            text-align: center;
+            overflow: hidden;
         }
-        
-        .logo {
-            font-size: 2.5rem;
-            font-weight: bold;
+
+        .flip-text {
+            font-size: 8rem;
+            font-weight: 900;
+            position: relative;
+            display: inline-block;
+            margin: 2rem 0;
+            transform-style: preserve-3d;
+            animation: swimIn 2s ease-out forwards;
+        }
+
+        @keyframes swimIn {
+            0% {
+                transform: translateX(-100%) rotateY(45deg) translateY(50px);
+                opacity: 0;
+            }
+            50% {
+                transform: translateX(-50%) rotateY(20deg) translateY(25px);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateX(0) rotateY(0) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .flip-letter {
+            display: inline-block;
             color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
             text-shadow: 0 0 20px rgba(0, 184, 212, 0.3);
+            animation: letterWave 3s ease-in-out infinite;
         }
+
+        @keyframes letterWave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .flip-letter:nth-child(1) { animation-delay: 0.0s; }
+        .flip-letter:nth-child(2) { animation-delay: 0.1s; }
+        .flip-letter:nth-child(3) { animation-delay: 0.2s; }
+        .flip-letter:nth-child(4) { animation-delay: 0.3s; }
+        .flip-letter:nth-child(5) { animation-delay: 0.4s; }
+        .flip-letter:nth-child(6) { animation-delay: 0.5s; }
         
         .hero {
             padding: 6rem 2rem;
@@ -193,7 +225,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -209,19 +240,26 @@
         }
         
         @media (max-width: 768px) {
-            .hero {
-                flex-direction: column;
+            .flip-text {
+                font-size: 4rem;
             }
             .hero img {
-                max-width: 80%;
+                max-width: 40%;
             }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="logo">Fishie</div>
-    </nav>
+    <div class="header-container">
+        <div class="flip-text">
+            <span class="flip-letter">F</span>
+            <span class="flip-letter">I</span>
+            <span class="flip-letter">S</span>
+            <span class="flip-letter">H</span>
+            <span class="flip-letter">I</span>
+            <span class="flip-letter">E</span>
+        </div>
+    </div>
     
     <main>
         <section class="hero">
@@ -230,7 +268,7 @@
                 <p>A variant of Jane Street's Figgie card game that adds deception and negotiation mechanics. Built on Figgie's core trading mechanics but with a twist - make deals, break deals, and try to coin flip your way to infinity.</p>
                 <a href="https://www.figgie.com/index.html" target="_blank" class="button figgie-button">Learn Figgie Rules</a>
             </div>
-            <img src="coins.png" alt="Game illustration" />
+            <img src="/api/placeholder/500/400" alt="Game illustration" />
         </section>
         
         <section class="features">
