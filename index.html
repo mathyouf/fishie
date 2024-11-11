@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fishie - A Trading Card Game Variant</title>
+    <style>
+        /* Previous styles remain exactly the same */
+        :root {
+            --primary: #00b8d4;
+            --primary-dark: #0089a1;
+            --secondary: #0a0b0f;
+            --accent: #151721;
+            --text: #ffffff;
+            --figgie-purple: #743789;
+            --figgie-purple-dark: #443888;
+            --card-bg: rgba(255, 255, 255, 0.03);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        
+        body {
+            background-color: var(--secondary);
+            color: var(--text);
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            min-height: 100vh;
+        }
+        
+        nav {
+            background-color: var(--secondary);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(0, 184, 212, 0.3);
+        }
+        
+        .hero {
+            padding: 6rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .hero-content {
+            flex: 1;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff 0%, #a0aec0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: #a0aec0;
+            line-height: 1.6;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .figgie-button {
+            background: linear-gradient(180deg, var(--figgie-purple) 0%, var(--figgie-purple-dark) 100%);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(116, 55, 137, 0.3);
+        }
+        
+        .figgie-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(116, 55, 137, 0.5);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .features {
+            padding: 6rem 2rem;
+            background-color: var(--accent);
+            position: relative;
+        }
+        
+        .features h2 {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #fff 0%, #a0aec0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            opacity: 0.5;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 2rem;
+            font-size: 1.75rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .rule-item {
+            margin-bottom: 1.5rem;
+            color: #a0aec0;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .rule-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            opacity: 0.8;
+        }
+        
+        .rule-title {
+            font-weight: bold;
+            color: var(--text);
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+        
+        .important-note {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2.5rem;
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero img {
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Fishie</div>
+    </nav>
+    
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Trade Smarter.<br>Play Fishier.</h1>
+                <p>A variant of Jane Street's Figgie card game that adds deception and negotiation mechanics. Built on Figgie's core trading mechanics but with a twist - make deals, break deals, and compete to collect the most valuable suits.</p>
+                <a href="https://figgie.com" target="_blank" class="button figgie-button">Learn Figgie Rules</a>
+            </div>
+            <img src="/api/placeholder/500/400" alt="Game illustration" />
+        </section>
+        
+        <section class="features">
+            <h2>Game Variants</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Slightly Fishie</h3>
+                    <div class="rule-item">
+                        <span class="rule-title">Retractable Offers</span>
+                        Cancel accepted trades before cards change hands
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-title">Selective Trading</span>
+                        Choose who can accept your offers
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-title">Price Matching</span>
+                        Post identical or lower prices for any suit
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <h3>Very Fishie</h3>
+                    <div class="rule-item">
+                        <span class="rule-title">Bulk Trading</span>
+                        Offer multiple cards in package deals
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-title">Hand Revelation</span>
+                        Pay to see others' current hands
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-title">Flexible Market</span>
+                        Ends by consensus or 30-second timeout
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <h3>Extremely Fishie</h3>
+                    <div class="rule-item">
+                        <span class="rule-title">Rule Modifications</span>
+                        Any changes with unanimous agreement
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-title">Pre-game Agreement</span>
+                        Must be settled before round begins
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-title">Core Integrity</span>
+                        Universal restrictions still apply
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="important-note">
+            <h3 style="color: var(--primary); margin-bottom: 1rem;">Universal Restrictions</h3>
+            <div class="rule-item">
+                <span class="rule-title">No Cheating</span>
+                Unless unanimously agreed in Extremely Fishie
+            </div>
+            <div class="rule-item">
+                <span class="rule-title">No Peeking</span>
+                At hidden information
+            </div>
+            <div class="rule-item">
+                <span class="rule-title">No Theft</span>
+                Of coins or cards
+            </div>
+            <div class="rule-item">
+                <span class="rule-title">No External Value</span>
+                Cannot trade using real-world items or currency
+            </div>
+            <div class="rule-item" style="font-style: italic;">
+                <span class="rule-title">Important</span>
+                Once cards or coins physically change hands, all verbal terms of that deal become binding.
+            </div>
+        </div>
+    </main>
+</body>
+</html>
